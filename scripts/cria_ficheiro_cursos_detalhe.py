@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import re
 
-df = pd.read_csv('./dados/cursos.csv')
+df = pd.read_csv('../dados/cursos.csv')
 
 # Cria Dicionário com o código e nome das provas
 url = 'https://www.dges.gov.pt/guias/assist3.asp'
@@ -16,13 +16,17 @@ for p in provas_descricao:
     prova_nome = p.text[3:]
     provas_dic[prova_cod] = prova_nome
 
+provas_dic['20'] = 'Mandarim' # Prova não incluido na pagina 
+
+# Padrão analisar
 padrao = re.compile(r'([0-9]+)\d*')
 
-df_2 = df.head(5)
+# Efetua web scrapping para cada um dos cursos e recolhe informação sobre provas de ingresso e notas
 l_provas = []
 l_ano_nota = []
 l_nota = []
-for i, r in df_2.iterrows():
+for i, r in df.iterrows():
+    print(str(i) + ' | ', r)
     url = r.Link_detalhe
     requisicao = requests.get(url)
     soup = BeautifulSoup(requisicao.content, 'html.parser')
@@ -45,7 +49,6 @@ for i, r in df_2.iterrows():
     l_provas.append(provas)
 
     # Informação sobre notas
-
     try:
         ano_nota = soup.find_all('th', class_= 'th1')[-1:][0].text
         nota = soup.find_all('td', class_= 'tvag')[-1:][0].text
@@ -56,10 +59,10 @@ for i, r in df_2.iterrows():
     l_nota.append(nota)
 
 # Cria colunas com provas de ingresso e notas de acesso
-df_2 = df_2.copy()
+df_2 = df.copy()
 df_2.loc[:, 'Provas_ingresso'] = l_provas
 df_2.loc[:, 'Ano_nota'] = l_ano_nota
 df_2.loc[:, 'Nota'] = l_nota
 
-
-df_2.to_csv('./dados/cursos_detalhe.csv', index='False')
+# Cria o ficheiro .csv com os dados carregados
+df_2.to_csv('../dados/cursos_detalhe.csv', index=False)
