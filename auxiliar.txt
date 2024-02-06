@@ -1,0 +1,44 @@
+urls = [
+            'https://www.dges.gov.pt/guias/detcursopi.asp?codc=9448&code=6800',
+            'https://www.dges.gov.pt/guias/detcursopi.asp?codc=9500&code=7035',
+            'https://www.dges.gov.pt/guias/detcursopi.asp?codc=9500&code=1320',
+            'https://www.dges.gov.pt/guias/detcursopi.asp?codc=9123&code=4442',
+            'https://www.dges.gov.pt/guias/detcursopi.asp?codc=9500&code=2219'
+        ]
+
+https://www.dges.gov.pt/guias/detcursopi.asp?codc=9448&code=6800
+Uma das seguintes provas:
+11 História
+16 Matemática
+18 Português
+
+https://www.dges.gov.pt/guias/detcursopi.asp?codc=9500&code=7035
+Um dos seguintes conjuntos:
+02 Biologia e Geologia
+      ou
+02 Biologia e Geologia
+07 Física e Química
+
+https://www.dges.gov.pt/guias/detcursopi.asp?codc=9500&code=1320
+Um dos seguintes conjuntos:
+02 Biologia e Geologia
+      ou
+02 Biologia e Geologia
+07 Física e Química
+      ou
+02 Biologia e Geologia
+18 Português
+
+https://www.dges.gov.pt/guias/detcursopi.asp?codc=9123&code=4442
+07 Física e Química
+16 Matemática
+
+https://www.dges.gov.pt/guias/detcursopi.asp?codc=9500&code=2219
+A informação sobre as condições de acesso deve ser obtida diretamente junto da universidade.
+
+https://www.dges.gov.pt/guias/detcursopi.asp?codc=9492&code=3101
+Uma das seguintes provas:
+13 Inglês
+15 Literatura Portuguesa
+20 Mandarim
+18 Português
