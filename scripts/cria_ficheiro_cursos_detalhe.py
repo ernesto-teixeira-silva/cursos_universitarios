@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import numpy as np
 import re
 
 df = pd.read_csv('../dados/cursos.csv')
@@ -24,7 +25,8 @@ padrao = re.compile(r'([0-9]+)\d*')
 # Efetua web scrapping para cada um dos cursos e recolhe informação sobre provas de ingresso e notas
 l_provas = []
 l_ano_nota = []
-l_nota = []
+l_nota_1fase = []
+l_nota_2fase = []
 for i, r in df.iterrows():
     print(str(i) + ' | ', r)
     url = r.Link_detalhe
@@ -48,21 +50,40 @@ for i, r in df.iterrows():
         provas = txt_provas
     l_provas.append(provas)
 
-    # Informação sobre notas
+    # Informação sobre notas 1ª fase
     try:
         ano_nota = soup.find_all('th', class_= 'th1')[-1:][0].text
-        nota = soup.find_all('td', class_= 'tvag')[-1:][0].text
+        nota_1 = soup.find_all('td', class_= 'tvag')[-2:][0]
+        if nota_1 and nota_1.text.strip():
+            nota_1fase = nota_1.text.strip()
+        else:
+            nota_1fase = float('nan')
     except:
-        ano_nota = ''
-        nota = ''
+        ano_nota = np.NaN
+        nota_1fase = np.NaN
+
+    # Informação sobre notas 2ª fase
+    try:
+        nota_2 = soup.find_all('td', class_= 'tvag')[-1:][0]
+        if nota_2 and nota_2.text.strip():
+            nota_2fase = nota_2.text.strip()
+        else:
+            nota_2fase = float('nan')
+    except:
+        nota_2fase = np.NaN
+        
+
+
     l_ano_nota.append(ano_nota)
-    l_nota.append(nota)
+    l_nota_1fase.append(nota_1fase)
+    l_nota_2fase.append(nota_2fase)
 
 # Cria colunas com provas de ingresso e notas de acesso
 df_2 = df.copy()
 df_2.loc[:, 'Provas_ingresso'] = l_provas
 df_2.loc[:, 'Ano_nota'] = l_ano_nota
-df_2.loc[:, 'Nota'] = l_nota
+df_2.loc[:, 'Nota_1fase'] = l_nota_1fase
+df_2.loc[:, 'Nota_2fase'] = l_nota_2fase
 
 # Cria o ficheiro .csv com os dados carregados
 df_2.to_csv('../dados/cursos_detalhe.csv', index=False)

@@ -47,12 +47,12 @@ for k, v in tipo_ensino_dic.items():
         l_link_detalhe.append(link_detalhe)
 
 df_cursos = pd.DataFrame({'Tipo_ensino': l_tipo_ensino,
-                          'Universidade_cod': l_univ_cod, 'Universidade_nome': univ_nome,
+                          'Universidade_cod': l_univ_cod, 'Universidade_nome': l_univ_nome,
                           'Curso_cod': l_curso_cod, 'Curso_nome': l_curso_nome,
                           'Ciclo': l_ciclo, 'Vagas': l_vagas,
                           'Link_detalhe': l_link_detalhe})
        
 
 
-df_cursos.to_csv('./dados/cursos.csv', index=False)
+df_cursos.to_csv('../dados/cursos.csv', index=False)
 
