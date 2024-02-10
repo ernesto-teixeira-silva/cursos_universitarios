@@ -45,3 +45,6 @@ Uma das seguintes provas:
 
 https://www.dges.gov.pt/guias/detcursopi.asp?codc=8086&code=0140
 Sem informação da 2_fase
+
+Provas de ingresso situações
+[dict_keys(['Uma das seguintes provas']), dict_keys(['Um dos seguintes conjuntos']), dict_keys(['As seguintes provas']), dict_keys(['Duas das seguintes provas']), 'A informação sobre as condições de acesso deve ser obtida diretamente junto da universidade.']

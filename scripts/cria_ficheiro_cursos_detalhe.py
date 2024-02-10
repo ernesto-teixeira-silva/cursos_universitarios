@@ -28,7 +28,7 @@ l_ano_nota = []
 l_nota_1fase = []
 l_nota_2fase = []
 for i, r in df.iterrows():
-    print(str(i) + ' | ', r)
+    #print(str(i) + ' | ', r)
     url = r.Link_detalhe
     requisicao = requests.get(url)
     soup = BeautifulSoup(requisicao.content, 'html.parser')
@@ -39,6 +39,10 @@ for i, r in df.iterrows():
         t = txt_provas.split(':')[1]
         correspondencias = padrao.findall(t)
         provas = {'Uma das seguintes provas': [provas_dic[prova] for prova in correspondencias if prova]}
+    elif txt_provas[:25] == 'Duas das seguintes provas':
+        t = txt_provas.split(':')[1]
+        correspondencias = padrao.findall(t)
+        provas = {'Duas das seguintes provas': [provas_dic[prova] for prova in correspondencias if prova]}
     elif txt_provas[:26] == 'Um dos seguintes conjuntos':
         t = txt_provas.split(':')[1].split('ou')
         provas = [padrao.findall(t) for t in t]
