@@ -2,3 +2,10 @@
     max-width: 80rem;
 }
 
+.stDeployButton{
+   visibility: hidden;
+}
+
+#MainMenu{
+    visibility: hidden;
+}
