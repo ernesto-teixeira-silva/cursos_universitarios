@@ -32,8 +32,8 @@ for k, v in tipo_ensino_dic.items():
         curso_nome = curso.find('div', class_='lin-ce-c3').text
         univ_cod = curso.find_previous('div', class_='box9').find('div', class_='lin-area-c1').text
         univ_nome = curso.find_previous('div', class_='box9').find('div', class_='lin-area-d2').text
-        ciclo = curso.find_all('div', class_='lin-ce-c3')[1].text
-        vagas = curso.find('div', class_='lin-ce-c5').text
+        ciclo = curso.find_all('div', class_='lin-ce-c3')[0].text
+        #vagas = curso.find('div', class_='lin-ce-c5').text
         href = curso.find('div', class_='lin-ce-c3').find('a')['href']
         link_detalhe = 'https://www.dges.gov.pt/guias/' + href
 
@@ -43,13 +43,14 @@ for k, v in tipo_ensino_dic.items():
         l_univ_cod.append(univ_cod)
         l_univ_nome.append(univ_nome)
         l_ciclo.append(ciclo)
-        l_vagas.append(vagas)
+        #l_vagas.append(vagas)
         l_link_detalhe.append(link_detalhe)
 
 df_cursos = pd.DataFrame({'Tipo_ensino': l_tipo_ensino,
                           'Universidade_cod': l_univ_cod, 'Universidade_nome': l_univ_nome,
                           'Curso_cod': l_curso_cod, 'Curso_nome': l_curso_nome,
-                          'Ciclo': l_ciclo, 'Vagas': l_vagas,
+                          'Ciclo': l_ciclo, 
+                          #'Vagas': l_vagas,
                           'Link_detalhe': l_link_detalhe})
        
 

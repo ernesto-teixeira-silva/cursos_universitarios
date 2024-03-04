@@ -5,7 +5,7 @@ import json
 st.title("""Listagem de Cursos""")
 st.subheader("Universidades, cursos, notas, provas de ingresso e link com detalhe.")
 st.write('No barra lateral esquerda poderá selecionar parte do nome do curso ou tipo de ensino. Após seleção, os resultados serão ordenados por ordem decrescente da nota da 1ª fase.')
-st.write('**As notas correspondem à candidatura do último aluno colocado no curso e referentes ao ano de 2022.**')
+st.write('**As notas correspondem à candidatura do último aluno colocado no curso e referentes ao ano de 2023.**')
 st.markdown("Fonte: [Direção-Geral do Ensino Superior](https://www.dges.gov.pt/guias/indest.asp)")
 st.markdown("Código fonte: [/github.com/ernesto-teixeira-silva/cursos_universitarios](https://github.com/ernesto-teixeira-silva/cursos_universitarios)")
 

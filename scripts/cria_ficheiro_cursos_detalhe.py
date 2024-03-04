@@ -34,7 +34,16 @@ for i, r in df.iterrows():
     soup = BeautifulSoup(requisicao.content, 'html.parser')
 
     # Informação sobre provas de ingresso
-    txt_provas = soup.text[soup.text.find('Ingresso'):soup.text.find('Classificações')][8:]
+    txt_provas = soup.text.split('Ingresso')[3]
+    try:
+        if soup.find_all('i')[0].get_text() == 'Candidatura de 2024:':
+            txt_provas = txt_provas[txt_provas.find('Candidatura de 2024:'):txt_provas.find('Candidatura de 2025')][20:]
+        elif soup.find_all('i')[0].get_text() == 'Candidatura de 2024 e 2025:':
+            next_h2 = soup.find('i').find_next('h2').text
+            txt_provas = txt_provas[txt_provas.find('Candidatura de 2024 e 2025:'):txt_provas.find(next_h2)][27:]
+    except:
+        txt_provas = 'Sem informação para mostrar'
+
     if txt_provas[:24] == 'Uma das seguintes provas':
         t = txt_provas.split(':')[1]
         correspondencias = padrao.findall(t)
@@ -76,8 +85,6 @@ for i, r in df.iterrows():
     except:
         nota_2fase = np.NaN
         
-
-
     l_ano_nota.append(ano_nota)
     l_nota_1fase.append(nota_1fase)
     l_nota_2fase.append(nota_2fase)
